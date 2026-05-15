@@ -1,7 +1,8 @@
 import ctypes
 import os
 import pygame
-from Game.core.scene import Scene
+
+from Game.core.entidades import Scene
 from Game.system.ResourceLoader import load_assets
 
 from Game.scenes import InicioScreen

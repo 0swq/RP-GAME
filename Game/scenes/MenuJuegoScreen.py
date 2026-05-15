@@ -1,19 +1,27 @@
+from Game.core.entidades import Scene
+
+
+def entradas_teclado (events, components, state, assets):
+    pass
+
+
+def actualizar(dt, components, state):
+    pass
+
+
+def renderizar(assets, components, screen, state):
+    pass
+
+
 def crear_escena(assets: dict, state: ResultState) -> Scene:
-    if state.win:
-        save_data(state)
-    components = init_components(assets["results"], state)
+    def _entradas_teclado(events):
+        return entradas_teclado(events=events, components=components, state=state, assets=assets)
 
-    def _handle_input(events):
-        return handle_input(events=events, components=components, state=state, assets=assets)
+    def _actualizar(dt):
+        actualizar(dt=dt, components=components, state=state)
 
-    def _update(dt):
-        update(dt=dt, components=components, state=state)
-
-    def _render(screen):
-        render(assets=assets["results"], components=components, screen=screen, state=state)
-
-    return Scene(
-        handle_input=_handle_input,
-        update=_update,
-        render=_render,
-    )
+    def _renderizar(screen):
+        renderizar(assets=assets["results"], components=components, screen=screen, state=state)
+    def iniciar_componentes(assets):
+        
+    return Scene( entradas_teclado=_entradas_teclado,actualizar=_actualizar, renderizar=_renderizar)

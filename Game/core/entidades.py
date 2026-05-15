@@ -4,13 +4,15 @@ from typing import Callable
 @dataclass(frozen=True)
 class Scene:
     entradas_teclado: Callable
-    update: Callable
-    render: Callable
+    actualizar: Callable
+    renderizar: Callable
+    iniciar_componentes: Callable
 
 @dataclass(frozen=True)
 class entidad:
     x: int
     y: int
+
 
 @dataclass(frozen=True)
 class jugador:
