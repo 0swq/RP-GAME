@@ -3,24 +3,31 @@ import os
 import pygame
 
 from Game.core.entidades import Scene
-from Game.system.ResourceLoader import load_assets
+from Game.system.Inicializador_recursos import cargar_recursos
 
-from Game.scenes import InicioScreen
-from Game.system.db import init_db
+from Game.Escenas import InicioScreen
+from Game.system.base_de_datos import init_db
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FUENTES = os.path.join(BASE_DIR, "recursos", "Fuentes",)
+MUSIC = os.path.join(BASE_DIR, "recursos", "Audio","Musica")
+FX = os.path.join(BASE_DIR, "recursos", "Audio","FX")
+TEXTURAS = os.path.join(BASE_DIR, "recursos", "Texturas")
+
 
 SCREEN_SIZE = (1920, 1080)
 
 def main():
     ctypes.windll.user32.SetProcessDPIAware()
     pygame.init()
-    icono = pygame.image.load(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "icon.png"))
+    icono = pygame.image.load(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "recursos", "icon.png"))
     pygame.display.set_icon(icono)
 
     screen = pygame.display.set_mode(SCREEN_SIZE)
     pygame.display.set_caption("ESAI")
-    assets = load_assets()
+    assets = cargar_recursos()
     init_db()
-    current_scene = InicioScreen.make_scene(assets)
+    current_scene = InicioScreen.crear_escena(assets)
 
     clock = pygame.time.Clock()
     running = True
